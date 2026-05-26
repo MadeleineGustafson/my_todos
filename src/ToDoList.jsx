@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 
 function ToDoList() {
-  const [tasks, setTasks] = useState([
-    "Eat Breakfast",
-    "Take a shower",
-    "Walk the dog",
-  ]);
+  const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
   }
 
-  function addTask() {}
+  function addTask() {
+    if (newTask.trim() !== "") {
+      setTasks((t) => [...t, newTask]);
+      setNewTask("");
+    }
+  }
 
-  function deleteTask() {}
+  function deleteTask(index) {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  }
 
   function moveTaskUp(index) {}
 
@@ -34,7 +38,7 @@ function ToDoList() {
       <ol>
         {tasks.map((task, index) => (
           <li key={index}>
-            <span className="text">{tasks}</span>
+            <span className="text">{task}</span>
             <button onClick={() => deleteTask(index)}>Delete</button>
             <button onClick={() => moveTaskUp(index)}>Up</button>
             <button onClick={() => moveTaskDown(index)}>Down</button>
