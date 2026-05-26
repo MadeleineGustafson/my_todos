@@ -36,6 +36,8 @@ function ToDoList() {
           <li key={index}>
             <span className="text">{tasks}</span>
             <button onClick={() => deleteTask(index)}>Delete</button>
+            <button onClick={() => moveTaskUp(index)}>Up</button>
+            <button onClick={() => moveTaskDown(index)}>Down</button>
           </li>
         ))}
       </ol>
