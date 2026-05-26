@@ -60,23 +60,24 @@ function ToDoList() {
           <RoundButton onClick={addTask}>Add</RoundButton>
         </SmallDiv>
         <Task>
-          <ol>
+          <TaskList>
             {tasks.map((task, index) => (
               <List key={index}>
                 <TaskSpan>{task}</TaskSpan>
-
-                <OtherButton onClick={() => moveTaskUp(index)}>
-                  <UpIcon />
-                </OtherButton>
-                <OtherButton onClick={() => moveTaskDown(index)}>
-                  <DownIcon />
-                </OtherButton>
-                <OtherButton onClick={() => deleteTask(index)}>
-                  <DeleteIcon />
-                </OtherButton>
+                <ButtonDiv>
+                  <OtherButton onClick={() => moveTaskUp(index)}>
+                    <UpIcon />
+                  </OtherButton>
+                  <OtherButton onClick={() => moveTaskDown(index)}>
+                    <DownIcon />
+                  </OtherButton>
+                  <OtherButton onClick={() => deleteTask(index)}>
+                    <DeleteIcon />
+                  </OtherButton>
+                </ButtonDiv>
               </List>
             ))}
-          </ol>
+          </TaskList>
         </Task>
       </ContainerDiv>
     </BigDiv>
@@ -101,13 +102,13 @@ const BigDiv = styled.div`
 const SmallDiv = styled.div``;
 
 const Task = styled.div`
-  width: 300px;
+  width: 280px;
   display: flex;
   justify-content: flex-start;
 `;
 
 const InputField = styled.input`
-  width: 300px;
+  width: 230px;
   border-radius: 10px;
   border: 1px solid black;
   padding: 1rem;
@@ -130,15 +131,25 @@ const OtherButton = styled.button`
 
 const TaskSpan = styled.span`
   flex: 1;
-  word-break: break-word;
-`;
 
+  word-break: break-word;
+  overflow-wrap: break-word;
+
+  padding-right: 1rem;
+`;
 const List = styled.li`
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding-bottom: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  width: 350px;
+
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+
+  list-style: none;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
 `;
 
 const ContainerDiv = styled.div`
@@ -168,4 +179,17 @@ const DownIcon = styled(GoChevronDown)`
   &:hover {
     transform: translateY(2px);
   }
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+
+  flex-shrink: 0;
+`;
+
+const TaskList = styled.ol`
+  padding: 0;
+  margin: 0;
 `;
